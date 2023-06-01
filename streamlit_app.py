@@ -1,38 +1,51 @@
-from collections import namedtuple
-import altair as alt
-import math
-import pandas as pd
 import streamlit as st
+import pandas as pd
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
-"""
-# Welcome to Streamlit!
+def load_data():
+    # Load the Iris dataset
+    iris = datasets.load_iris()
+    X = iris.data
+    y = iris.target
+    return X, y
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+def train_model(X, y):
+    # Train a random forest classifier
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+    clf = RandomForestClassifier()
+    clf.fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+    return clf, accuracy
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
+def main():
+    st.title("Iris Flower Classification")
+    st.write("This app performs classification of Iris flower species using a Random Forest classifier.")
 
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
+    # Load data
+    X, y = load_data()
 
+    # Train the model
+    model, accuracy = train_model(X, y)
 
-with st.echo(code_location='below'):
-    total_points = st.slider("Number of points in spiral", 1, 5000, 2000)
-    num_turns = st.slider("Number of turns in spiral", 1, 100, 9)
+    # Display accuracy
+    st.write(f"Model accuracy: {accuracy}")
 
-    Point = namedtuple('Point', 'x y')
-    data = []
+    # Classification form
+    st.sidebar.header("Classify Iris Flower")
+    sepal_length = st.sidebar.slider("Sepal Length", float(X[:, 0].min()), float(X[:, 0].max()), float(X[:, 0].mean()))
+    sepal_width = st.sidebar.slider("Sepal Width", float(X[:, 1].min()), float(X[:, 1].max()), float(X[:, 1].mean()))
+    petal_length = st.sidebar.slider("Petal Length", float(X[:, 2].min()), float(X[:, 2].max()), float(X[:, 2].mean()))
+    petal_width = st.sidebar.slider("Petal Width", float(X[:, 3].min()), float(X[:, 3].max()), float(X[:, 3].mean()))
 
-    points_per_turn = total_points / num_turns
+    input_data = [[sepal_length, sepal_width, petal_length, petal_width]]
+    prediction = model.predict(input_data)
+    species = iris.target_names[prediction[0]]
 
-    for curr_point_num in range(total_points):
-        curr_turn, i = divmod(curr_point_num, points_per_turn)
-        angle = (curr_turn + 1) * 2 * math.pi * i / points_per_turn
-        radius = curr_point_num / total_points
-        x = radius * math.cos(angle)
-        y = radius * math.sin(angle)
-        data.append(Point(x, y))
+    st.sidebar.markdown(f"Predicted species: **{species}**")
 
-    st.altair_chart(alt.Chart(pd.DataFrame(data), height=500, width=500)
-        .mark_circle(color='#0068c9', opacity=0.5)
-        .encode(x='x:Q', y='y:Q'))
+if __name__ == "__main__":
+    main()
