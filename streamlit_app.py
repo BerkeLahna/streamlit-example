@@ -1,51 +1,49 @@
 import streamlit as st
 import pandas as pd
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+import joblib
 
-def load_data():
-    # Load the Iris dataset
-    iris = datasets.load_iris()
-    X = iris.data
-    y = iris.target
-    return X, y
+def load_model():
+    # Load the pre-trained model
+    model = joblib.load('loan_approval_model.pkl')
+    return model
 
-def train_model(X, y):
-    # Train a random forest classifier
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    clf = RandomForestClassifier()
-    clf.fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred)
-    return clf, accuracy
+def predict_loan_approval(model, input_data):
+    # Perform prediction using the model
+    prediction = model.predict(input_data)
+    return prediction
 
 def main():
-    st.title("Iris Flower Classification")
-    st.write("This app performs classification of Iris flower species using a Random Forest classifier.")
+    st.title("Loan Application Approval Prediction")
+    st.write("This app predicts whether a loan application will be approved or not.")
 
-    # Load data
-    X, y = load_data()
+    # Load the model
+    model = load_model()
 
-    # Train the model
-    model, accuracy = train_model(X, y)
+    # Bank Information Form
+    st.header("Bank Information Form")
+    loan_amount = st.slider("Loan Amount", 1000, 100000, 50000)
+    income = st.slider("Annual Income", 1000, 100000, 50000)
+    credit_score = st.slider("Credit Score", 300, 850, 650)
+    employment_years = st.slider("Years of Employment", 0, 30, 5)
 
-    # Display accuracy
-    st.write(f"Model accuracy: {accuracy}")
+    input_data = pd.DataFrame({
+        'LoanAmount': [loan_amount],
+        'AnnualIncome': [income],
+        'CreditScore': [credit_score],
+        'YearsEmployed': [employment_years]
+    })
 
-    # Classification form
-    st.sidebar.header("Classify Iris Flower")
-    sepal_length = st.sidebar.slider("Sepal Length", float(X[:, 0].min()), float(X[:, 0].max()), float(X[:, 0].mean()))
-    sepal_width = st.sidebar.slider("Sepal Width", float(X[:, 1].min()), float(X[:, 1].max()), float(X[:, 1].mean()))
-    petal_length = st.sidebar.slider("Petal Length", float(X[:, 2].min()), float(X[:, 2].max()), float(X[:, 2].mean()))
-    petal_width = st.sidebar.slider("Petal Width", float(X[:, 3].min()), float(X[:, 3].max()), float(X[:, 3].mean()))
+    if st.button("Predict"):
+        # Perform prediction
+        prediction = predict_loan_approval(model, input_data)
 
-    input_data = [[sepal_length, sepal_width, petal_length, petal_width]]
-    prediction = model.predict(input_data)
-    species = iris.target_names[prediction[0]]
-
-    st.sidebar.markdown(f"Predicted species: **{species}**")
+        # Display the prediction
+        if prediction[0] == 1:
+            st.markdown("### Loan Application **Approved**")
+        else:
+            st.markdown("### Loan Application **Not Approved**")
 
 if __name__ == "__main__":
     main()
