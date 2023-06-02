@@ -53,7 +53,7 @@ model = LogisticRegression()
 # Define the parameter grid for grid search
 param_grid = {
     'model__C': [0.1, 1.0, 10.0],  # example parameter values to search over
-    'model__penalty': ['l1', 'l2']
+    'model__penalty': ['l2']
 }
 
 best_accuracy = 0.0
