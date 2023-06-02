@@ -3,6 +3,8 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 import warnings
+import streamlit as st
+
 warnings.filterwarnings('ignore')
 df = pd.read_csv('bank-additional.csv', delimiter=';')
 df.dropna(inplace=True)
@@ -53,7 +55,7 @@ model = LogisticRegression()
 # Define the parameter grid for grid search
 param_grid = {
     'model__C': [0.1, 1.0, 10.0],  # example parameter values to search over
-    'model__penalty': ['l2']
+    'model__penalty': ['l1', 'l2']
 }
 
 best_accuracy = 0.0
@@ -80,19 +82,15 @@ for scaler_name, scaler in scalers:
 
     # Calculate the accuracy using the scaler
     accuracy = accuracy_score(y_test, y_pred)
-    print('Accuracy with', scaler_name, ':', accuracy)
+    st.write('Accuracy with', scaler_name, ':', accuracy)
 
     # Check if the current scaler gives a better accuracy
     if accuracy > best_accuracy:
         best_accuracy = accuracy
         best_scaler = scaler_name
 
-print('Best scaler is', best_scaler)
-print('Best accuracy score is', best_accuracy)
-
-import streamlit as st
-
-# ...
+st.write('Best scaler is', best_scaler)
+st.write('Best accuracy score is', best_accuracy)
 
 # Create a function to preprocess the input data
 def preprocess_input(input_data):
