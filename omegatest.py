@@ -55,7 +55,7 @@ def prepare_input_data(input_data):
     
     # Example: Creating a pandas DataFrame from the input data
     import pandas as pd
-    X = pd.DataFrame(input_data)
+    X = pd.DataFrame([input_data])
     
     # Perform any necessary preprocessing or feature engineering on X
     
