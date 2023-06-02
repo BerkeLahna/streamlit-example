@@ -8,8 +8,8 @@ from sklearn.metrics import accuracy_score
 data = pd.read_csv("bank-additional.csv")  # Replace "bank_data.csv" with your actual dataset file
 
 # Split the data into features and target
-X = data.drop("y", axis=1)
-y = data["y"]
+X = data.drop('y', axis=1)
+y = data['y']
 
 # Convert categorical variables to numerical using one-hot encoding
 X = pd.get_dummies(X)
