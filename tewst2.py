@@ -27,11 +27,7 @@ def main():
         'nr.employed': st.slider("Enter number of employees:", min_value=4000.0, max_value=10000.0, value=5000.0, step=10.0),
     }
     
-    # Display the inputs
-    st.subheader("Input Data:")
-    for key, value in input_data.items():
-        st.write(f"{key}: {value}")
-    
+
     # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
