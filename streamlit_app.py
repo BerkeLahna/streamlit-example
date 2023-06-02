@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 # Load the dataset
-data = pd.read_csv("bank_data.csv")  # Replace "bank_data.csv" with your actual dataset file
+data = pd.read_csv("bank-additional.csv")  # Replace "bank_data.csv" with your actual dataset file
 
 # Split the data into features and target
 X = data.drop("y", axis=1)
