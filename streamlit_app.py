@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 
 # Load the dataset
 data = pd.read_csv("bank-additional.csv")  # Replace "bank_data.csv" with your actual dataset file
-
+print(data.head())
 # Split the data into features and target
 X = data.drop('y', axis=1)
 y = data['y']
