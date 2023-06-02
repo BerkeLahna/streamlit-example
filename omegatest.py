@@ -7,7 +7,7 @@ def main():
     # Accept inputs from the user
     input_data = {
         'age': st.slider("Enter age:", min_value=18, max_value=100, value=30),
-        'job': st.text_input("Enter job:"),
+        'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
         'marital': st.selectbox("Enter marital status:", ['single', 'married', 'divorced']),
         'education': st.selectbox("Enter education level:", ['basic.4y','basic.6y','basic.9y', 'high.school', 'university.degree','professional.course','illiterate']),
         'default': st.selectbox("Has credit in default:", ['no', 'yes']),
