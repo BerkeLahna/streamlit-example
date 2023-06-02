@@ -1,132 +1,94 @@
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-import warnings
 import streamlit as st
-
-warnings.filterwarnings('ignore')
-df = pd.read_csv('bank-additional.csv', delimiter=';')
-df.dropna(inplace=True)
-numeric_cols = ['duration', 'campaign', 'pdays', 'previous', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
-
-Q1 = df[numeric_cols].quantile(0.25)
-Q3 = df[numeric_cols].quantile(0.75)
-IQR = Q3 - Q1
-
-lower_bound = Q1 - 1.5 * IQR
-upper_bound = Q3 + 1.5 * IQR
-
-outliers_mask = (df[numeric_cols] < lower_bound) | (df[numeric_cols] > upper_bound)
-
-df = df[(df[numeric_cols] > lower_bound) & (df[numeric_cols] < upper_bound)]
-
-cols = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'day_of_week', 'poutcome']
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-for col in cols:
-    df[col] = le.fit_transform(df[col])
-
-
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.linear_model import LogisticRegression
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
-from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler, Normalizer
-from sklearn.pipeline import Pipeline
 
-# Split the dataset into features (X) and target variable (y)
-X = df.drop('y', axis=1)
-y = df['y']
+# Load the dataset
+data = pd.read_csv("bank_data.csv")  # Replace "bank_data.csv" with your actual dataset file
 
-# Split the data into training and testing sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+# Split the data into features and target
+X = data.drop("y", axis=1)
+y = data["y"]
 
-# Define the scalers to evaluate
-scalers = [
-    ('StandardScaler', StandardScaler()),
-    ('MinMaxScaler', MinMaxScaler()),
-    ('RobustScaler', RobustScaler()),
-    ('Normalizer', Normalizer())
-]
+# Convert categorical variables to numerical using one-hot encoding
+X = pd.get_dummies(X)
 
-# Create the logistic regression classifier
-model = LogisticRegression()
+# Split the data into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Define the parameter grid for grid search
-param_grid = {
-    'model__C': [0.1, 1.0, 10.0],  # example parameter values to search over
-    'model__penalty': [ 'l2']
-}
+# Train the model
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
 
-best_accuracy = 0.0
-best_scaler = None
+# Make predictions
+y_pred = model.predict(X_test)
 
-# Iterate over the scalers and perform grid search with cross-validation
-for scaler_name, scaler in scalers:
-    # Create a pipeline with scaler and model
-    pipeline = Pipeline([
-        ('scaler', scaler),
-        ('model', model)
-    ])
-    
-    # Perform grid search with cross-validation
-    grid_search = GridSearchCV(pipeline, param_grid, cv=5)
-    grid_search.fit(X_train, y_train)
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
 
-    # Get the best model and its hyperparameters
-    best_model = grid_search.best_estimator_
-    best_params = grid_search.best_params_
-
-    # Make predictions on the test set using the best model
-    y_pred = best_model.predict(X_test)
-
-    # Calculate the accuracy using the scaler
-    accuracy = accuracy_score(y_test, y_pred)
-    st.write('Accuracy with', scaler_name, ':', accuracy)
-
-    # Check if the current scaler gives a better accuracy
-    if accuracy > best_accuracy:
-        best_accuracy = accuracy
-        best_scaler = scaler_name
-
-st.write('Best scaler is', best_scaler)
-st.write('Best accuracy score is', best_accuracy)
-
-# Create a function to preprocess the input data
-def preprocess_input(input_data):
-    input_df = pd.DataFrame(input_data)
-    for col in cols:
-        input_df[col] = le.transform(input_df[col])
-    return input_df
-
-# Create a function to make predictions
-def make_predictions(input_data):
-    scaled_input = best_model.named_steps['scaler'].transform(input_data)
-    predictions = best_model.predict(scaled_input)
-    return predictions[0]
-
-# Create the Streamlit app
+# Create a Streamlit app
 def main():
-    st.title("Classification Model App")
-    st.write("Enter the parameters below to make predictions.")
+    st.title("Bank Information Classification")
+    st.write("Predicting whether a customer subscribes to a term deposit")
 
-    # Create input fields
-    input_data = {}
-    for col in X.columns:
-        if col != 'y':
-            if col in numeric_cols:
-                input_data[col] = st.number_input(col, value=0)
-            else:
-                input_data[col] = st.text_input(col)
+    # Add input fields for user to enter bank information
+    age = st.slider("Age", min_value=18, max_value=100, value=30)
+    job = st.selectbox("Job", ['admin.', 'blue-collar', 'entrepreneur', 'housemaid', 'management', 'retired',
+                               'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown'])
+    marital = st.selectbox("Marital Status", ['divorced', 'married', 'single', 'unknown'])
+    education = st.selectbox("Education", ['basic.4y', 'basic.6y', 'basic.9y', 'high.school', 'illiterate',
+                                           'professional.course', 'university.degree', 'unknown'])
+    default = st.selectbox("Default Credit", ['no', 'yes', 'unknown'])
+    housing = st.selectbox("Housing Loan", ['no', 'yes', 'unknown'])
+    loan = st.selectbox("Personal Loan", ['no', 'yes', 'unknown'])
+    contact = st.selectbox("Contact Type", ['cellular', 'telephone'])
+    month = st.selectbox("Month", ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'])
+    day_of_week = st.selectbox("Day of Week", ['mon', 'tue', 'wed', 'thu', 'fri'])
+    duration = st.slider("Call Duration (seconds)", min_value=0, max_value=5000, value=200)
+    campaign = st.slider("Number of Contacts", min_value=1, max_value=50, value=5)
+    pdays = st.slider("Days Since Last Contact", min_value=0, max_value=30, value=10)
+    previous = st.slider("Number of Previous Contacts", min_value=0, max_value=20, value=2)
+    poutcome = st.selectbox("Previous Outcome", ['failure', 'nonexistent', 'success'])
+    emp_var_rate = st.slider("Employment Variation Rate", min_value=-3.0, max_value=3.0, value=0.0)
+    cons_price_idx = st.slider("Consumer Price Index", min_value=92.0, max_value=95.0, value=93.0)
+    cons_conf_idx = st.slider("Consumer Confidence Index", min_value=-60.0, max_value=-20.0, value=-40.0)
+    euribor3m = st.slider("Euribor 3 Month Rate", min_value=0.0, max_value=5.0, value=2.0)
+    nr_employed = st.slider("Number of Employees", min_value=5000, max_value=6000, value=5500)
 
-    # Preprocess the input data
-    input_df = preprocess_input([input_data])
+    # Create a DataFrame with the input values
+    input_data = pd.DataFrame({
+        'age': [age],
+        'job': [job],
+        'marital': [marital],
+        'education': [education],
+        'default': [default],
+        'housing': [housing],
+        'loan': [loan],
+        'contact': [contact],
+        'month': [month],
+        'day_of_week': [day_of_week],
+        'duration': [duration],
+        'campaign': [campaign],
+        'pdays': [pdays],
+        'previous': [previous],
+        'poutcome': [poutcome],
+        'emp.var.rate': [emp_var_rate],
+        'cons.price.idx': [cons_price_idx],
+        'cons.conf.idx': [cons_conf_idx],
+        'euribor3m': [euribor3m],
+        'nr.employed': [nr_employed]
+    })
 
-    # Make predictions when the user clicks the "Predict" button
-    if st.button("Predict"):
-        prediction = make_predictions(input_df)
-        st.write("Predicted class:", prediction)
+    # Convert categorical variables to numerical using one-hot encoding
+    input_data = pd.get_dummies(input_data)
 
-# Run the Streamlit app
+    # Predict the result
+    prediction = model.predict(input_data)
+
+    st.write(f"Prediction: {'Yes' if prediction[0] == 1 else 'No'}")
+    st.write(f"Accuracy: {accuracy:.2f}")
+
+
 if __name__ == '__main__':
     main()
