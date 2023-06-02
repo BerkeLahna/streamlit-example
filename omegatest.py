@@ -60,7 +60,7 @@ def prepare_input_data(input_data):
     from sklearn.preprocessing import LabelEncoder
     le = LabelEncoder()
     for col in cols:
-    X[col] = le.fit_transform(df[col])
+        X[col] = le.fit_transform(df[col])
   
     # Perform any necessary preprocessing or feature engineering on X
     
