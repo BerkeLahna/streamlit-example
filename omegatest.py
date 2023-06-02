@@ -56,7 +56,12 @@ def prepare_input_data(input_data):
     # Example: Creating a pandas DataFrame from the input data
     import pandas as pd
     X = pd.DataFrame([input_data])
-    
+    cols = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'day_of_week', 'poutcome']
+    from sklearn.preprocessing import LabelEncoder
+    le = LabelEncoder()
+    for col in cols:
+    X[col] = le.fit_transform(df[col])
+  
     # Perform any necessary preprocessing or feature engineering on X
     
     return X
