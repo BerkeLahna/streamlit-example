@@ -23,7 +23,7 @@ def main():
         'poutcome': st.selectbox("Outcome of the previous marketing campaign:", ['failure', 'success', 'nonexistent']),
         'emp.var.rate': st.slider("Enter employment variation rate:", min_value=-3.0, max_value=3.0, value=0.0, step=0.1),
         'cons.price.idx': st.slider("Enter consumer price index:", min_value=0.0, max_value=105.0, value=93.0, step=0.1),
-        'cons.conf.idx': st.slider("Enter consumer confidence index:", min_value=-50.0, max_value=-10.0, value=-30.0, step=0.1),    
+        'cons.conf.idx': st.slider("Enter consumer confidence index:", min_value=-50.0, max_value=100.0, value=0.0, step=0.1),    
         'euribor3m': st.slider("Enter euribor 3 month rate:", min_value=0.0, max_value=5.0, value=3.0, step=0.01),
         'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0),
     }
