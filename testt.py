@@ -1,24 +1,28 @@
 import streamlit as st
 import joblib
 
-keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
-
-col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
-
-for key in keys:
-    if key not in st.session_state:
-        st.session_state.slider = 0
-
-def plus(value,key):
-    if st.session_state[key] < 1000:
-        st.session_state[key]  += value
-
-def minus(value,key):
-    if st.session_state[key] > -1000:
-        st.session_state[key] -= value
 
 
 def main():
+    
+    
+    keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
+
+    col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
+
+    for key in keys:
+        if key not in st.session_state:
+            st.session_state.slider = 0
+
+    def plus(value,key):
+        if st.session_state[key] < 1000:
+            st.session_state[key]  += value
+
+    def minus(value,key):
+        if st.session_state[key] > -1000:
+            st.session_state[key] -= value
+
+    
     st.title("Bank Information Classification")
     
     with col1 : 
