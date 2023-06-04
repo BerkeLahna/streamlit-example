@@ -10,7 +10,7 @@ def plus_one():
     return
 
 
-def plus_one():
+def minus_one():
     if st.session_state["slider"] < 10:
         st.session_state.slider -= 1
     else:
