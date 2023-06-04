@@ -57,6 +57,10 @@ def main():
         st.write("\n")
         st.write("\n")
         st.write("\n")
+        st.empty()
+        st.empty()
+        st.empty()
+        st.empty()
         st.write("\n")
         st.button("-1", on_click=minus, args=(1, 'duration'),key = "dur1")
 
