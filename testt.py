@@ -64,11 +64,29 @@ def main():
     with col3:
         add_one = st.button("+5", on_click=plus, args=(5, 'age'), key="add_one_5")
         remove_one = st.button("-5", on_click=minus, args=(5, 'age'), key="remove_one_5")
-
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.button("-1", on_click=minus, args=(1, 'duration'))
     with col4:
         add_one = st.button("+10", on_click=plus, args=(10, 'age'), key="add_one_10")
         remove_one = st.button("-10", on_click=minus, args=(10, 'age'), key="remove_one_10")
-
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.button("-1", on_click=minus, args=(1, 'duration'))
     # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
