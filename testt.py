@@ -56,27 +56,35 @@ def main():
         st.button("-1", on_click=minus, args=(1, 'duration'),key = "dur_rem_1")
         st.button("+1", on_click=plus, args=(1, 'campaign'),key = "cam_add_1")
         st.button("-1", on_click=minus, args=(1, 'campaign'),key = "cam_rem_1")
+        st.button("+1", on_click=plus, args=(1, 'pdays'),key = "pdays_add_1")
+        st.button("-1", on_click=minus, args=(1, 'pdays'),key = "pdays_rem_1")
+        st.button("+1", on_click=plus, args=(1, 'previous'),key = "previous_add_1")
+        st.button("-1", on_click=minus, args=(1, 'previous'),key = "previous_rem_1")
+        for i in range(15):
+           st.write("")
+        st.button("+.1", on_click=plus, args=(0.1, 'emp.var.rate'),key = "emp.var.rate_add_1")
+        st.button("-.1", on_click=minus, args=(0.1, 'emp.var.rate'),key = "emp.var.rate_rem_1")
+        
 
     with col3:
         st.write("")
-        add_one = st.button("+5", on_click=plus, args=(5, 'age'), key="add_one_5")
-        remove_one = st.button("-5", on_click=minus, args=(5, 'age'), key="remove_one_5")
+        st.button("+5", on_click=plus, args=(5, 'age'), key="add_one_5")
+        st.button("-5", on_click=minus, args=(5, 'age'), key="remove_one_5")
         for i in range(49):
            st.write("")
         st.button("+5", on_click=plus, args=(5, 'duration'),key = "dur_add_5")
         st.button("-5", on_click=minus, args=(5, 'duration'),key = "dur_rem_5")
         st.button("+5", on_click=plus, args=(5, 'campaign'),key = "cam_add_5")
         st.button("-5", on_click=minus, args=(5, 'campaign'),key = "cam_rem_5")
-#     with col4:
-#         st.write("")
-#         add_one = st.button("+10", on_click=plus, args=(10, 'age'), key="add_one_10")
-#         remove_one = st.button("-10", on_click=minus, args=(10, 'age'), key="remove_one_10")
-#         for i in range(49):
-#             st.write("")
-#         st.button("+10", on_click=plus, args=(10, 'duration'),key = "dur_add_10")
-#         st.button("-10", on_click=minus, args=(10, 'duration'),key = "dur_rem_10")
-#         st.button("+10", on_click=plus, args=(10, 'campaign'),key = "cam_add_10")
-#         st.button("-10", on_click=minus, args=(10, 'campaign'),key = "cam_rem_10")
+        st.button("+5", on_click=plus, args=(5, 'pdays'),key = "pdays_add_5")
+        st.button("-5", on_click=minus, args=(5, 'pdays'),key = "pdays_rem_5")
+        st.button("+5", on_click=plus, args=(5, 'previous'),key = "previous_add_5")
+        st.button("-5", on_click=minus, args=(5, 'previous'),key = "previous_rem_5")
+        for i in range(15):
+           st.write("")
+        st.button("+1", on_click=plus, args=(5, 'emp.var.rate'),key = "emp.var.rate_add_5")
+        st.button("-1", on_click=minus, args=(5, 'emp.var.rate'),key = "emp.var.rate_rem_5")
+
     # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
