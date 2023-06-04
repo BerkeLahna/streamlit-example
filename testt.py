@@ -41,7 +41,7 @@ def main():
             'emp.var.rate': st.slider("Enter employment variation rate:", min_value=-5.0, max_value=5.0, value=0.0, step=0.1, key='emp.var.rate'),
             'cons.price.idx': st.slider("Enter consumer price index:", min_value=0.0, max_value=105.0, value=0.0, step=0.1, key='cons.price.idx'),
             'cons.conf.idx': st.slider("Enter consumer confidence index:", min_value=-100.0, max_value=100.0, value=0.0, step=0.1, key='cons.conf.idx'),    
-            'euribor3m': st.slider("Enter euribor 3 month rate:", min_value=0.0, max_value=7.0, value=0.0, step=0.01, key='euribor3m'),
+            'euribor3m': st.slider("Enter euribor 3 month rate:", min_value=0.0, max_value=7.0, value=0.0, step=0.001, key='euribor3m'),
             'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=0.0, step=10.0, key='nr.employed'),
         }
     with col2:
