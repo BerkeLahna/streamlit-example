@@ -6,6 +6,13 @@ keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'con
 col1, col2, col3, col4 = st.columns([6, 0.5, 0.5, 0.5])
 if "slider_values" not in st.session_state:
     st.session_state.slider_values = [0] * 10
+def plus(value):
+    if st.session_state.slider < 1000:
+        st.session_state.slider += value
+
+def minus(value):
+    if st.session_state.slider > -1000:
+        st.session_state.slider -= value
 
 
 def main():
