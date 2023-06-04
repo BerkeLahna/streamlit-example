@@ -68,6 +68,10 @@ def main():
         st.button("-1", on_click=minus, args=(1, 'cons.price.idx'),key = "cons.price.idx_rem_1")
         st.button("+1", on_click=plus, args=(1, 'emp.var.rate'),key = "cons.conf.idx_add_1")
         st.button("-1", on_click=minus, args=(1, 'emp.var.rate'),key = "cons.conf.idx_rem_1")
+        st.button("+1", on_click=plus, args=(1, 'euribor3m'),key = "euribor3m_add_1")
+        st.button("-1", on_click=minus, args=(1, 'euribor3m'),key = "euribor3m_rem_1")
+        st.button("+1", on_click=plus, args=(1, 'nr.employed'),key = "nr.employed_add_1")
+        st.button("-1", on_click=minus, args=(1, 'nr.employed'),key = "nr.employed_rem_1")
         
 
     with col3:
@@ -92,6 +96,10 @@ def main():
         st.button("-5", on_click=minus, args=(5, 'cons.price.idx'),key = "cons.price.idx_rem_5")
         st.button("+5", on_click=plus, args=(5, 'emp.var.rate'),key = "cons.conf.idx_add_5")
         st.button("-5", on_click=minus, args=(5, 'emp.var.rate'),key = "cons.conf.idx_rem_5")
+        st.button("+5", on_click=plus, args=(5, 'euribor3m'),key = "euribor3m_add_5")
+        st.button("-5", on_click=minus, args=(5, 'euribor3m'),key = "euribor3m_rem_5")
+        st.button("+5", on_click=plus, args=(5, 'nr.employed'),key = "nr.employed_add_5")
+        st.button("-5", on_click=minus, args=(5, 'nr.employed'),key = "nr.employed_rem_5")
 
     # Add a button to perform the classification
     if st.button("Perform Classification"):
