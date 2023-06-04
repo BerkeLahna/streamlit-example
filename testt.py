@@ -62,8 +62,8 @@ def main():
         st.button("-1", on_click=minus, args=(1, 'previous'),key = "previous_rem_1")
         for i in range(6):
            st.write("")
-        st.button("+1", on_click=plus, args=(0.1, 'emp.var.rate'),key = "emp.var.rate_add_1")
-        st.button("-1", on_click=minus, args=(0.1, 'emp.var.rate'),key = "emp.var.rate_rem_1")
+        st.button("+1", on_click=plus, args=(1, 'emp.var.rate'),key = "emp.var.rate_add_1")
+        st.button("-1", on_click=minus, args=(1, 'emp.var.rate'),key = "emp.var.rate_rem_1")
         st.button("+1", on_click=plus, args=(1, 'cons.price.idx'),key = "cons.price.idx_add_1")
         st.button("-1", on_click=minus, args=(1, 'cons.price.idx'),key = "cons.price.idx_rem_1")
         st.button("+1", on_click=plus, args=(1, 'emp.var.rate'),key = "cons.conf.idx_add_1")
@@ -90,8 +90,8 @@ def main():
         st.button("-5", on_click=minus, args=(5, 'previous'),key = "previous_rem_5")
         for i in range(6):
            st.write("")
-        st.button("+1", on_click=plus, args=(5, 'emp.var.rate'),key = "emp.var.rate_add_5")
-        st.button("-1", on_click=minus, args=(5, 'emp.var.rate'),key = "emp.var.rate_rem_5")
+        st.button("+5", on_click=plus, args=(5, 'emp.var.rate'),key = "emp.var.rate_add_5")
+        st.button("-5", on_click=minus, args=(5, 'emp.var.rate'),key = "emp.var.rate_rem_5")
         st.button("+5", on_click=plus, args=(5, 'cons.price.idx'),key = "cons.price.idx_add_5")
         st.button("-5", on_click=minus, args=(5, 'cons.price.idx'),key = "cons.price.idx_rem_5")
         st.button("+5", on_click=plus, args=(5, 'emp.var.rate'),key = "cons.conf.idx_add_5")
