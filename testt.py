@@ -42,8 +42,14 @@ def main():
             'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0),
     }
     with col2:
-        add_one = st.button("+1", on_click=plus, args=(1,))
-        remove_one = st.button("-1", on_click=minus, args=(1,))
+        add_one = st.button("+1", on_click=plus(1))
+        remove_one = st.button("-1", on_click=minus(1))
+    with col3:
+        add_one = st.button("+1", on_click=plus(5))
+        remove_one = st.button("-1", on_click=minus(5))
+    with col4:
+        add_one = st.button("+1", on_click=plus(10))
+        remove_one = st.button("-1", on_click=minus(10))
 
     # Add a button to perform the classification
     if st.button("Perform Classification"):
