@@ -1,4 +1,4 @@
-# slider value up to 10
+import streamlit as st# slider value up to 10
 def plus_one():
     if st.session_state["slider"] < 10:
         st.session_state.slider += 1
