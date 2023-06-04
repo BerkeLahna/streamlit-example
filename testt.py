@@ -19,7 +19,7 @@ def minus(value, key):
 def main():
     st.title("Bank Information Classification")
     
-    col1, col2, col3 = st.columns([11, 2, 2])
+    col1, col2, col3 = st.columns([11, 0.5, 0.5])
     with col1:
        
         input_data = {
