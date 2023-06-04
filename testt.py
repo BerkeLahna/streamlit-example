@@ -1,4 +1,7 @@
 import streamlit as st# slider value up to 10
+
+col1, col2 = st.columns(2)
+
 def plus_one():
     if st.session_state["slider"] < 10:
         st.session_state.slider += 1
@@ -8,7 +11,7 @@ def plus_one():
 
 # when creating the button, assign the name of your callback
 # function to the on_click parameter
-add_one = st.button("Add one to the slider", on_click=plus_one, key="add_one")
+add_one = col1.st.button("Add one to the slider", on_click=plus_one, key="add_one")
 
 # create the slider
-slide_val = st.slider("Pick a number", 0, 10, key="slider")
+slide_val = col2.st.slider("Pick a number", 0, 10, key="slider")
