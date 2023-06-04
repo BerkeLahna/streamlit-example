@@ -3,7 +3,7 @@ import joblib
 
 keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
 
-col1, col2, col3, col4 = st.columns([6, 0.5, 0.5, 0.5])
+col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
 if "slider_values" not in st.session_state:
     st.session_state.slider_values = [0] * 10
 def plus(value):
