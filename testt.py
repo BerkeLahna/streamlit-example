@@ -10,11 +10,9 @@ for key in keys:
         st.session_state[key] = 0
 
 def plus(value, key):
-    if st.session_state[key] < 1000:
         st.session_state[key] += value
 
 def minus(value, key):
-    if st.session_state[key] > -1000:
         st.session_state[key] -= value
 
 
