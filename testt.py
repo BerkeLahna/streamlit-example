@@ -47,8 +47,8 @@ def main():
             'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0, key='nr.employed'),
         }
     with col2:
-        st.button("+1", on_click=plus, args=(1, 'age'))
-        st.button("-1", on_click=minus, args=(1, 'age'))
+        st.button("+1", on_click=plus, args=(1, 'age'),key = "age1")
+        st.button("-1", on_click=minus, args=(1, 'age'),key = "age1")
         st.write("")
         st.write("")
         st.write("")
@@ -58,7 +58,7 @@ def main():
         st.write("")
         st.write("")
         st.write("")
-        st.button("-1", on_click=minus, args=(1, 'duration'))
+        st.button("-1", on_click=minus, args=(1, 'duration'),key = "dur1")
 
 
     with col3:
@@ -73,7 +73,7 @@ def main():
         st.write("")
         st.write("")
         st.write("")
-        st.button("-5", on_click=minus, args=(5, 'duration'))
+        st.button("-5", on_click=minus, args=(5, 'duration'),key = "age5")
     with col4:
         add_one = st.button("+10", on_click=plus, args=(10, 'age'), key="add_one_10")
         remove_one = st.button("-10", on_click=minus, args=(10, 'age'), key="remove_one_10")
@@ -86,7 +86,7 @@ def main():
         st.write("")
         st.write("")
         st.write("")
-        st.button("-10", on_click=minus, args=(10, 'duration'))
+        st.button("-10", on_click=minus, args=(10, 'duration'),key = "age10")
     # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
