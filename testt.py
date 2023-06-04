@@ -1,10 +1,17 @@
 import streamlit as st
 import joblib
 
+keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
+
+col1, col2, col3, col4 = st.columns([6, 0.5, 0.5, 0.5])
+if "slider_values" not in st.session_state:
+    st.session_state.slider_values = [0] * num_sliders
+
+
 def main():
     st.title("Bank Information Classification")
     
-    # Accept inputs from the user
+    with col1 : 
     input_data = {
         'age': st.slider("Enter age:", min_value=18, max_value=100, value=30),
         'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
@@ -27,7 +34,9 @@ def main():
         'euribor3m': st.slider("Enter euribor 3 month rate:", min_value=0.0, max_value=5.0, value=3.0, step=0.01),
         'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0),
     }
-    
+    with col2:
+        add_one = st.button("+1", on_click=plus, args=(1,))
+        remove_one = st.button("-1", on_click=minus, args=(1,))
 
     # Add a button to perform the classification
     if st.button("Perform Classification"):
