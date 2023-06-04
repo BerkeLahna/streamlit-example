@@ -19,9 +19,9 @@ def minus(value, key):
 
 
 def main():
-    st.title("Bank Information Classification")
 
     with col1:
+        st.title("Bank Information Classification")
         input_data = {
             'age': st.slider("Enter age:", min_value=18, max_value=100, value=30, key='age'),
             'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
