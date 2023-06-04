@@ -83,6 +83,7 @@ def main():
         st.button("-5", on_click=minus, args=(5, 'duration'),key = "dur_rem_5")
         st.button("+5", on_click=plus, args=(5, 'campaign'),key = "cam_add_5")
         st.button("-5", on_click=minus, args=(5, 'campaign'),key = "cam_rem_5")
+        st.write("")
         st.button("+5", on_click=plus, args=(5, 'pdays'),key = "pdays_add_5")
         st.button("-5", on_click=minus, args=(5, 'pdays'),key = "pdays_rem_5")
         st.button("+5", on_click=plus, args=(5, 'previous'),key = "previous_add_5")
