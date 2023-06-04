@@ -3,7 +3,7 @@ import joblib
 
 def main():
     st.title("Bank Information Classification")
-    col1,col2 = st.beta_columns([3,1])
+    col1,col2 = st.columns([3,1])
     # Accept inputs from the user
     input_data = {
         'age': col1.st.slider("Enter age:", min_value=18, max_value=100, value=30), 
