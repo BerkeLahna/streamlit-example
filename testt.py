@@ -1,6 +1,6 @@
 import streamlit as st# slider value up to 10
 
-col1, col2,col3,col4 = st.columns([6,0.5,0.5,0.5])
+col1, col2,col3,col4 = st.columns([6,1,1,1])
 
 def plus(value):
     if st.session_state["slider"] < 1000:
