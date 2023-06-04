@@ -19,9 +19,7 @@ def minus(value):
 # when creating the button, assign the name of your callback
 # function to the on_click parameter
 
-# create the slider
-with col1:
-    slide_val = st.slider("Pick a number", -1000, 1000, key="slider")
+
 with col2:
     add_one = st.button("+1", on_click=plus(1))
     remove_one = st.button("-1", on_click=minus(1))
@@ -32,3 +30,6 @@ with col3:
 with col4:
     add_ten = st.button("+10", on_click=plus(10))
     remove_ten = st.button("-1", on_click=minus(10))
+# create the slider
+with col1:
+    slide_val = st.slider("Pick a number", -1000, 1000, key="slider")
