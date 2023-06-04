@@ -9,13 +9,13 @@ for key in keys:
     if key not in st.session_state:
         st.session_state.slider = 0
 
-def plus(value):
-    if st.session_state.slider < 1000:
-        st.session_state.slider += value
+def plus(value,key):
+    if st.session_state.key < 1000:
+        st.session_state.key  += value
 
-def minus(value):
-    if st.session_state.slider > -1000:
-        st.session_state.slider -= value
+def minus(value,key):
+    if st.session_state.key > -1000:
+        st.session_state.key -= value
 
 
 def main():
@@ -45,16 +45,16 @@ def main():
             'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0),
     }
     with col2:
-        add_one = st.button("+1", on_click=plus(1), key="add_one_1")
-        remove_one = st.button("-1", on_click=minus(1), key="remove_one_1")
+        add_one = st.button("+1", on_click=plus(1,'age'), key="add_one_1")
+        remove_one = st.button("-1", on_click=minus(1,'age'), key="remove_one_1")
 
     with col3:
-        add_one = st.button("+5", on_click=plus(5), key="add_one_5")
-        remove_one = st.button("-5", on_click=minus(5), key="remove_one_5")
+        add_one = st.button("+5", on_click=plus(5,'age'), key="add_one_5")
+        remove_one = st.button("-5", on_click=minus(5,'age'), key="remove_one_5")
 
     with col4:
-        add_one = st.button("+10", on_click=plus(10), key="add_one_10")
-        remove_one = st.button("-10", on_click=minus(10), key="remove_one_10")
+        add_one = st.button("+10", on_click=plus(10,'age'), key="add_one_10")
+        remove_one = st.button("-10", on_click=minus(10,'age'), key="remove_one_10")
 
 
     # Add a button to perform the classification
