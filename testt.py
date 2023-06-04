@@ -5,9 +5,10 @@ def main():
     st.title("Bank Information Classification")
     col1,col2 = st.columns([3,1])
     # Accept inputs from the user
+    
     input_data = {
-        'age': col1.st.slider("Enter age:", min_value=18, max_value=100, value=30), 
-        'age': col2.st.selectbox("Outcome of the previous marketing campaign:", ['failure', 'success', 'nonexistent']),
+        with col1:
+        'age': st.slider("Enter age:", min_value=18, max_value=100, value=30), 
         'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
         'marital': st.selectbox("Enter marital status:", ['single', 'married', 'divorced']),
         'education': st.selectbox("Enter education level:", ['basic.4y','basic.6y','basic.9y', 'high.school', 'university.degree','professional.course','illiterate']),
@@ -27,6 +28,10 @@ def main():
         'cons.conf.idx':col1.st.slider("Enter consumer confidence index:", min_value=-50.0, max_value=100.0, value=0.0, step=0.1),    
         'euribor3m': col1.st.slider("Enter euribor 3 month rate:", min_value=0.0, max_value=5.0, value=3.0, step=0.01),
         'nr.employed': col1.st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0),
+        
+        with col2:
+        
+        'age': st.slider("Enter age:", min_value=18, max_value=100, value=30), 
     }
     
 
