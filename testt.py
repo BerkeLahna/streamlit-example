@@ -1,5 +1,7 @@
 import streamlit as st
 import joblib
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 
 def main():
     st.title("Bank Information Classification")
@@ -28,20 +30,9 @@ def main():
         'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0),
     }
     
-    # Add buttons to increment or decrement the slider values
-    for key, value in input_data.items():
-        st.write(key)
-        if isinstance(value, int) or isinstance(value, float):
-            col1, col2 = st.beta_columns(2)
-            with col1:
-                increment = st.button("+")
-            with col2:
-                decrement = st.button("-")
-            
-            if increment:
-                input_data[key] += 1
-            elif decrement:
-                input_data[key] -= 1
+    # Update the input_data dictionary with the second code values
+    input_data['slider'] = st.session_state.slider
+    input_data['numeric'] = st.session_state.numeric
     
     # Add a button to perform the classification
     if st.button("Perform Classification"):
@@ -68,10 +59,8 @@ def prepare_input_data(input_data):
     # You may need to preprocess and transform the input features here
     
     # Example: Creating a pandas DataFrame from the input data
-    import pandas as pd
     X = pd.DataFrame([input_data])
     cols = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'day_of_week', 'poutcome']
-    from sklearn.preprocessing import LabelEncoder
     le = LabelEncoder()
     for col in cols:
         X[col] = le.fit_transform(X[col])
@@ -82,4 +71,30 @@ def prepare_input_data(input_data):
 
 
 if __name__ == "__main__":
+    # Initialize session_state variables
+    st.session_state.slider = 0
+    st.session_state.numeric = 0
+    
+    # Display the second code
+    st.title("Example")
+    
+    def update_slider():
+        st.session_state.slider = st.session_state.numeric
+    
+    def update_numin():
+        st.session_state.numeric = st.session_state.slider
+    
+    col1, col2 = st.columns([3, 1])
+    
+    with col1:
+        slider_value = st.slider('slider', min_value=0,
+                                 value=0,
+                                 max_value=5,
+                                 step=1,
+                                 key='slider', on_change=update_numin)
+    
+    with col2:
+        val = st.number_input('Input', value=0, key='numeric', on_change=update_slider)
+    
+    # Run the main application
     main()
