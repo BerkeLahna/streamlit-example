@@ -5,8 +5,8 @@ from sklearn.preprocessing import LabelEncoder
 
 def main():
     st.title("Bank Information Classification")
-
-# Accept inputs from the user
+    
+    # Accept inputs from the user
     input_data = {
         'age': st.slider("Enter age:", min_value=18, max_value=100, value=30),
         'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
@@ -29,78 +29,72 @@ def main():
         'euribor3m': st.slider("Enter euribor 3 month rate:", min_value=0.0, max_value=5.0, value=3.0, step=0.01),
         'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0),
     }
-
-# Update the input_data dictionary with the second code values
+    
+    # Update the input_data dictionary with the second code values
     input_data['slider'] = st.session_state.slider
     input_data['numeric'] = st.session_state.numeric
-
-# Add a button to perform the classification
+    
+    # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
         st.subheader("Prediction:")
         st.write(prediction)
-    
+        
+
 def perform_classification(input_data):
-# Load the trained model
+    # Load the trained model
     model = joblib.load("bank_model.pkl")
-# Prepare the input data for prediction
+    
+    # Prepare the input data for prediction
     X = prepare_input_data(input_data)
-
-# Perform the prediction
+    
+    # Perform the prediction
     prediction = model.predict(X)
-
+    
     return prediction
+
+
 def prepare_input_data(input_data):
-# Convert input data into the format expected by the model
-# You may need to preprocess and transform the input features here
-# Example: Creating a pandas DataFrame from the input data
+    # Convert input data into the format expected by the model
+    # You may need to preprocess and transform the input features here
+    
+    # Example: Creating a pandas DataFrame from the input data
     X = pd.DataFrame([input_data])
     cols = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'day_of_week', 'poutcome']
     le = LabelEncoder()
     for col in cols:
         X[col] = le.fit_transform(X[col])
-
-# Perform any necessary preprocessing or feature engineering on X
-
+  
+    # Perform any necessary preprocessing or feature engineering on X
+    
     return X
 
-if name == "main":
-# Initialize session_state variables
+
+if __name__ == "__main__":
+    # Initialize session_state variables
     st.session_state.slider = 0
     st.session_state.numeric = 0
-# Display the second code
+    
+    # Display the second code
     st.title("Example")
-
+    
     def update_slider():
         st.session_state.slider = st.session_state.numeric
-
+    
     def update_numin():
         st.session_state.numeric = st.session_state.slider
-
+    
     col1, col2 = st.columns([3, 1])
-
+    
     with col1:
         slider_value = st.slider('slider', min_value=0,
-                             value=0,
-                             max_value=5,
-                             step=1,
-                             key='slider', on_change=update_numin)
-
+                                 value=0,
+                                 max_value=5,
+                                 step=1,
+                                 key='slider', on_change=update_numin)
+    
     with col2:
         val = st.number_input('Input', value=0, key='numeric', on_change=update_slider)
-
-# Run the main application
+    
+    # Run the main application
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
