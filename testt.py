@@ -8,10 +8,14 @@ def update_slider():
 def update_numin():
     st.session_state.numeric = st.session_state.slider
 
-val = st.number_input('Input', value=0, key='numeric', on_change=update_slider)
+col1, col2 = st.columns([3, 1])
 
-slider_value = st.slider('slider', min_value=0,
-                         value=val,
-                         max_value=5,
-                         step=1,
-                         key='slider', on_change=update_numin)
+with col1:
+    slider_value = st.slider('slider', min_value=0,
+                             value=0,
+                             max_value=5,
+                             step=1,
+                             key='slider', on_change=update_numin)
+
+with col2:
+    val = st.number_input('Input', value=0, key='numeric', on_change=update_slider)
