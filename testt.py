@@ -6,7 +6,8 @@ def main():
     col1,col2 = st.beta_columns([3,1])
     # Accept inputs from the user
     input_data = {
-        'age': col1.st.slider("Enter age:", min_value=18, max_value=100, value=30), col2.st.selectbox("Outcome of the previous marketing campaign:", ['failure', 'success', 'nonexistent']),
+        'age': col1.st.slider("Enter age:", min_value=18, max_value=100, value=30), 
+        'age': col2.st.selectbox("Outcome of the previous marketing campaign:", ['failure', 'success', 'nonexistent']),
         'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
         'marital': st.selectbox("Enter marital status:", ['single', 'married', 'divorced']),
         'education': st.selectbox("Enter education level:", ['basic.4y','basic.6y','basic.9y', 'high.school', 'university.degree','professional.course','illiterate']),
