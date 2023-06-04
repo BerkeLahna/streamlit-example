@@ -20,7 +20,7 @@ def minus_one():
 # function to the on_click parameter
 with col2:
     add_one = st.button("Add one to the slider", on_click=plus_one, key="add_one")
-    remove_one = st.button("remove one from the slider", on_click=minus_one, key="add_one")
+    remove_one = st.button("remove one from the slider", on_click=minus_one, key="minus_one")
 # create the slider
 with col1:
     slide_val = st.slider("Pick a number", 0, 10, key="slider")
