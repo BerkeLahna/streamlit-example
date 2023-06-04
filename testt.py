@@ -45,8 +45,8 @@ def main():
             'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0, key='nr.employed'),
         }
     with col2:
-        add_one = st.button("+1", on_click=plus, args=(1, 'age'), key="add_one_1")
-        remove_one = st.button("-1", on_click=minus, args=(1, 'age'), key="remove_one_1")
+        st.button("+1", on_click=plus, args=(1, 'age'))
+        st.button("-1", on_click=minus, args=(1, 'age'))
 
     with col3:
         add_one = st.button("+5", on_click=plus, args=(5, 'age'), key="add_one_5")
