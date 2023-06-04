@@ -19,9 +19,9 @@ with col1:
 
 with col2:
     if st.button("Increment"):
-        st.session_state.slider += st.session_state.numeric
+        st.session_state.slider += st.number_input.value
 
     st.number_input('Input', value=0, key='numeric', on_change=update_slider)
 
     if st.button("Decrement"):
-        st.session_state.slider -= st.session_state.numeric
+        st.session_state.slider -= st.number_input.value
