@@ -67,16 +67,16 @@ def main():
         st.button("-5", on_click=minus, args=(5, 'duration'),key = "dur_rem_5")
         st.button("+5", on_click=plus, args=(5, 'campaign'),key = "cam_add_5")
         st.button("-5", on_click=minus, args=(5, 'campaign'),key = "cam_rem_5")
-    with col4:
-        st.write("")
-        add_one = st.button("+10", on_click=plus, args=(10, 'age'), key="add_one_10")
-        remove_one = st.button("-10", on_click=minus, args=(10, 'age'), key="remove_one_10")
-        for i in range(49):
-            st.write("")
-        st.button("+10", on_click=plus, args=(10, 'duration'),key = "dur_add_10")
-        st.button("-10", on_click=minus, args=(10, 'duration'),key = "dur_rem_10")
-        st.button("+10", on_click=plus, args=(10, 'campaign'),key = "cam_add_10")
-        st.button("-10", on_click=minus, args=(10, 'campaign'),key = "cam_rem_10")
+#     with col4:
+#         st.write("")
+#         add_one = st.button("+10", on_click=plus, args=(10, 'age'), key="add_one_10")
+#         remove_one = st.button("-10", on_click=minus, args=(10, 'age'), key="remove_one_10")
+#         for i in range(49):
+#             st.write("")
+#         st.button("+10", on_click=plus, args=(10, 'duration'),key = "dur_add_10")
+#         st.button("-10", on_click=minus, args=(10, 'duration'),key = "dur_rem_10")
+#         st.button("+10", on_click=plus, args=(10, 'campaign'),key = "cam_add_10")
+#         st.button("-10", on_click=minus, args=(10, 'campaign'),key = "cam_rem_10")
     # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
