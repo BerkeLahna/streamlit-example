@@ -51,7 +51,8 @@ def main():
         st.button("-1", on_click=minus, args=(1, 'age'),key = "age_rem_1")
         for i in range(40):
             st.write("")
-        st.button("-1", on_click=minus, args=(1, 'duration'),key = "dur1")
+        st.button("+1", on_click=plus, args=(1, 'duration'),key = "dur_add_1")
+        st.button("-1", on_click=minus, args=(1, 'duration'),key = "dur_rem_1")
 
 
     with col3:
@@ -59,12 +60,14 @@ def main():
         remove_one = st.button("-5", on_click=minus, args=(5, 'age'), key="remove_one_5")
         for i in range(40):
            st.write("")
+        st.button("+5", on_click=plus, args=(5, 'duration'),key = "dur_add_5")
         st.button("-5", on_click=minus, args=(5, 'duration'),key = "dur_rem_5")
     with col4:
         add_one = st.button("+10", on_click=plus, args=(10, 'age'), key="add_one_10")
         remove_one = st.button("-10", on_click=minus, args=(10, 'age'), key="remove_one_10")
         for i in range(40):
             st.write("")
+        st.button("+10", on_click=plus, args=(10, 'duration'),key = "dur_add_10")
         st.button("-10", on_click=minus, args=(10, 'duration'),key = "dur_rem_10")
     # Add a button to perform the classification
     if st.button("Perform Classification"):
