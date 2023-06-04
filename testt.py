@@ -53,8 +53,6 @@ def main():
             st.write("")
         st.button("+1", on_click=plus, args=(1, 'duration'),key = "dur_add_1")
         st.button("-1", on_click=minus, args=(1, 'duration'),key = "dur_rem_1")
-        for i in range(15):
-            st.write("")
         st.button("+1", on_click=plus, args=(1, 'campaign'),key = "cam_add_1")
         st.button("-1", on_click=minus, args=(1, 'campaign'),key = "cam_rem_1")
 
@@ -65,8 +63,6 @@ def main():
            st.write("")
         st.button("+5", on_click=plus, args=(5, 'duration'),key = "dur_add_5")
         st.button("-5", on_click=minus, args=(5, 'duration'),key = "dur_rem_5")
-        for i in range(15):
-            st.write("")
         st.button("+5", on_click=plus, args=(5, 'campaign'),key = "cam_add_5")
         st.button("-5", on_click=minus, args=(5, 'campaign'),key = "cam_rem_5")
     with col4:
@@ -76,8 +72,6 @@ def main():
             st.write("")
         st.button("+10", on_click=plus, args=(10, 'duration'),key = "dur_add_10")
         st.button("-10", on_click=minus, args=(10, 'duration'),key = "dur_rem_10")
-        for i in range(15):
-            st.write("")
         st.button("+10", on_click=plus, args=(10, 'campaign'),key = "cam_add_10")
         st.button("-10", on_click=minus, args=(10, 'campaign'),key = "cam_rem_10")
     # Add a button to perform the classification
