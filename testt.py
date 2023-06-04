@@ -18,6 +18,6 @@ with col1:
                              key='slider', on_change=update_numin)
 
 with col2:
-    st.button("Button 1")
+    st.button("+")
     val = st.number_input('Input', value=0, key='numeric', on_change=update_slider)
-    st.button("Button 2")
+    st.button("-")
