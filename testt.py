@@ -1,31 +1,27 @@
 import streamlit as st
 import joblib
 
+keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
+
+col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
+
+for key in keys:
+    if key not in st.session_state:
+        st.session_state[key] = 0
+
+def plus(value, key):
+    if st.session_state[key] < 1000:
+        st.session_state[key] += value
+
+def minus(value, key):
+    if st.session_state[key] > -1000:
+        st.session_state[key] -= value
 
 
 def main():
-    
-    
-    keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
-
-    col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
-
-    for key in keys:
-        if key not in st.session_state:
-            st.session_state.slider = 0
-
-    def plus(value,key):
-        if st.session_state[key] < 1000:
-            st.session_state[key]  += value
-
-    def minus(value,key):
-        if st.session_state[key] > -1000:
-            st.session_state[key] -= value
-
-    
     st.title("Bank Information Classification")
-    
-    with col1 : 
+
+    with col1:
         input_data = {
             'age': st.slider("Enter age:", min_value=18, max_value=100, value=30, key='age'),
             'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
@@ -47,44 +43,43 @@ def main():
             'cons.conf.idx': st.slider("Enter consumer confidence index:", min_value=-50.0, max_value=100.0, value=0.0, step=0.1, key='cons.conf.idx'),    
             'euribor3m': st.slider("Enter euribor 3 month rate:", min_value=0.0, max_value=5.0, value=3.0, step=0.01, key='euribor3m'),
             'nr.employed': st.slider("Enter number of employees:", min_value=0.0, max_value=10000.0, value=5000.0, step=10.0, key='nr.employed'),
-    }
+        }
     with col2:
-        add_one = st.button("+1", on_click=plus(1,'age'), key="add_one_1")
-        remove_one = st.button("-1", on_click=minus(1,'age'), key="remove_one_1")
+        add_one = st.button("+1", on_click=plus, args=(1, 'age'), key="add_one_1")
+        remove_one = st.button("-1", on_click=minus, args=(1, 'age'), key="remove_one_1")
 
     with col3:
-        add_one = st.button("+5", on_click=plus(5,'age'), key="add_one_5")
-        remove_one = st.button("-5", on_click=minus(5,'age'), key="remove_one_5")
+        add_one = st.button("+5", on_click=plus, args=(5, 'age'), key="add_one_5")
+        remove_one = st.button("-5", on_click=minus, args=(5, 'age'), key="remove_one_5")
 
     with col4:
-        add_one = st.button("+10", on_click=plus(10,'age'), key="add_one_10")
-        remove_one = st.button("-10", on_click=minus(10,'age'), key="remove_one_10")
-
+        add_one = st.button("+10", on_click=plus, args=(10, 'age'), key="add_one_10")
+        remove_one = st.button("-10", on_click=minus, args=(10, 'age'), key="remove_one_10")
 
     # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
         st.subheader("Prediction:")
         st.write(prediction)
-        
+
 
 def perform_classification(input_data):
     # Load the trained model
     model = joblib.load("bank_model.pkl")
-    
+
     # Prepare the input data for prediction
     X = prepare_input_data(input_data)
-    
+
     # Perform the prediction
     prediction = model.predict(X)
-    
+
     return prediction
 
 
 def prepare_input_data(input_data):
     # Convert input data into the format expected by the model
     # You may need to preprocess and transform the input features here
-    
+
     # Example: Creating a pandas DataFrame from the input data
     import pandas as pd
     X = pd.DataFrame([input_data])
@@ -93,9 +88,9 @@ def prepare_input_data(input_data):
     le = LabelEncoder()
     for col in cols:
         X[col] = le.fit_transform(X[col])
-  
+
     # Perform any necessary preprocessing or feature engineering on X
-    
+
     return X
 
 
