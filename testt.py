@@ -49,6 +49,17 @@ def main():
     with col2:
         st.button("+1", on_click=plus, args=(1, 'age'))
         st.button("-1", on_click=minus, args=(1, 'age'))
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.write("")
+        st.button("-1", on_click=minus, args=(1, 'duration'))
+
 
     with col3:
         add_one = st.button("+5", on_click=plus, args=(5, 'age'), key="add_one_5")
