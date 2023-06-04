@@ -47,12 +47,12 @@ def main():
         remove_one = st.button("-1", on_click=minus(1), key="remove_one_1")
 
     with col3:
-        add_one = st.button("+1", on_click=plus(5), key="add_one_5")
-        remove_one = st.button("-1", on_click=minus(5), key="remove_one_5")
+        add_one = st.button("+5", on_click=plus(5), key="add_one_5")
+        remove_one = st.button("-5", on_click=minus(5), key="remove_one_5")
 
     with col4:
-        add_one = st.button("+1", on_click=plus(10), key="add_one_10")
-        remove_one = st.button("-1", on_click=minus(10), key="remove_one_10")
+        add_one = st.button("+10", on_click=plus(10), key="add_one_10")
+        remove_one = st.button("-10", on_click=minus(10), key="remove_one_10")
 
 
     # Add a button to perform the classification
