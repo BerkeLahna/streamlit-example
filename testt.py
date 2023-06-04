@@ -3,7 +3,7 @@ import streamlit as st
 # Define CSS style for smaller button font
 button_style = """
     <style>
-    .smaller-font button {
+    .smaller-font {
         font-size: 12px;
     }
     </style>
@@ -31,23 +31,23 @@ with col1:
     slide_val = st.slider("Pick a number", -1000, 1000, key="slider")
 
 with col2:
-    # Add the 'smaller-font' CSS class to the button
-    add_one = st.button("+1", on_click=plus, args=(1,), key="add_one", help="add_one", unsafe_allow_html=True)
-    st.markdown('<div class="smaller-font">' + st.help(add_one) + '</div>', unsafe_allow_html=True)
+    # Add the 'smaller-font' CSS class using Markdown syntax
+    add_one = st.button("+1", on_click=plus, args=(1,), key="add_one", help="add_one")
+    st.markdown('<p class="smaller-font">' + st.help(add_one) + '</p>', unsafe_allow_html=True)
 
-    remove_one = st.button("-1", on_click=minus, args=(1,), key="remove_one", help="remove_one", unsafe_allow_html=True)
-    st.markdown('<div class="smaller-font">' + st.help(remove_one) + '</div>', unsafe_allow_html=True)
+    remove_one = st.button("-1", on_click=minus, args=(1,), key="remove_one", help="remove_one")
+    st.markdown('<p class="smaller-font">' + st.help(remove_one) + '</p>', unsafe_allow_html=True)
 
 with col3:
-    add_five = st.button("+5", on_click=plus, args=(5,), key="add_five", help="add_five", unsafe_allow_html=True)
-    st.markdown('<div class="smaller-font">' + st.help(add_five) + '</div>', unsafe_allow_html=True)
+    add_five = st.button("+5", on_click=plus, args=(5,), key="add_five", help="add_five")
+    st.markdown('<p class="smaller-font">' + st.help(add_five) + '</p>', unsafe_allow_html=True)
 
-    remove_five = st.button("-5", on_click=minus, args=(5,), key="remove_five", help="remove_five", unsafe_allow_html=True)
-    st.markdown('<div class="smaller-font">' + st.help(remove_five) + '</div>', unsafe_allow_html=True)
+    remove_five = st.button("-5", on_click=minus, args=(5,), key="remove_five", help="remove_five")
+    st.markdown('<p class="smaller-font">' + st.help(remove_five) + '</p>', unsafe_allow_html=True)
 
 with col4:
-    add_ten = st.button("+10", on_click=plus, args=(10,), key="add_ten", help="add_ten", unsafe_allow_html=True)
-    st.markdown('<div class="smaller-font">' + st.help(add_ten) + '</div>', unsafe_allow_html=True)
+    add_ten = st.button("+10", on_click=plus, args=(10,), key="add_ten", help="add_ten")
+    st.markdown('<p class="smaller-font">' + st.help(add_ten) + '</p>', unsafe_allow_html=True)
 
-    remove_ten = st.button("-10", on_click=minus, args=(10,), key="remove_ten", help="remove_ten", unsafe_allow_html=True)
-    st.markdown('<div class="smaller-font">' + st.help(remove_ten) + '</div>', unsafe_allow_html=True)
+    remove_ten = st.button("-10", on_click=minus, args=(10,), key="remove_ten", help="remove_ten")
+    st.markdown('<p class="smaller-font">' + st.help(remove_ten) + '</p>', unsafe_allow_html=True)
