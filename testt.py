@@ -49,7 +49,16 @@ def main():
     with col2:
         st.button("+1", on_click=plus, args=(1, 'age'),key = "age_add_1")
         st.button("-1", on_click=minus, args=(1, 'age'),key = "age_rem_1")
-        st.write("\n")
+        st.write("
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 ")
         st.write("\n")
         st.write("\n")
         st.write("\n")
