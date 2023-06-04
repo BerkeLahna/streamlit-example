@@ -2,17 +2,16 @@ import streamlit as st
 
 st.title("Example")
 
-if "age" not in st.session_state:
-    st.session_state.age = 30
+def update_slider():
+    st.session_state.slider = st.session_state.numeric
 
-col1, col2 = st.columns([3, 1])
+def update_numin():
+    st.session_state.numeric = st.session_state.slider
 
-with col1:
-    age = st.slider("Enter age:", min_value=18, max_value=100, value=st.session_state.age)
+val = st.number_input('Input', value=0, key='numeric', on_change=update_slider)
 
-with col2:
-    age_input = st.number_input(" ", min_value=18, max_value=100, value=st.session_state.age)
-
-st.session_state.age = age_input
-
-st.write(f"Age: {age}")
+slider_value = st.slider('slider', min_value=0,
+                         value=val,
+                         max_value=5,
+                         step=1,
+                         key='slider', on_change=update_numin)
