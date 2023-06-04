@@ -3,7 +3,7 @@ import joblib
 
 keys = ['age', 'duration', 'campaign', 'pdays', 'previous', 'emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']
 
-col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
+
 
 for key in keys:
     if key not in st.session_state:
@@ -19,9 +19,11 @@ def minus(value, key):
 
 
 def main():
-
+    st.title("Bank Information Classification")
+    
+    col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
     with col1:
-        st.title("Bank Information Classification")
+       
         input_data = {
             'age': st.slider("Enter age:", min_value=18, max_value=100, value=30, key='age'),
             'job':  st.selectbox("Enter job:", ['blue-collar','services','admin.', 'entrepreneur', 'self-employed','technician','management','student','retired','housemaid','unemployed']),
