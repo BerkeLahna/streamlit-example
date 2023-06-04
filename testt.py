@@ -1,6 +1,6 @@
 import streamlit as st
 
-col1, col2, col3, col4 = st.columns([6, 1, 1, 1])
+col1, col2, col3, col4 = st.columns([10, 1, 1, 1])
 
 # Initialize the session state slider value if it doesn't exist
 if "slider" not in st.session_state:
