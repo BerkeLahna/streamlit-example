@@ -110,7 +110,7 @@ def main():
 
 def perform_classification(input_data):
     # Load the trained model
-    model = joblib.load("bank_model.pkl")
+    model = joblib.load("bank_model1.pkl")
 
     # Prepare the input data for prediction
     X = prepare_input_data(input_data)
