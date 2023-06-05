@@ -104,8 +104,8 @@ def main():
     # Add a button to perform the classification
     if st.button("Perform Classification"):
         prediction = perform_classification(input_data)
-        st.subheader("Prediction:")
-        st.write(prediction)
+#         st.subheader("Prediction:")
+#         st.write(prediction)
 
 
 
@@ -121,14 +121,14 @@ def perform_classification(input_data):
     prediction = model.predict(X)
 
     # Map the predicted values to text labels and colors
-    label_map = {0: ("The user is not elligible for creating a deposit account", "red"), 1: ("The user is elligible for creating a deposit account", "green")}
+    label_map = {0: ("You are not elligible for creating a deposit account", "rgba(255, 0, 0, 0.5)"), 1: ("You are elligible for creating a deposit account", "rgba(0, 255, 0, 0.5)")}
     prediction_label, prediction_color = label_map[prediction[0]]
 
     # Display the text box with colored background
-    st.markdown(f'<div style="background-color: {prediction_color}; padding: 10px;">{prediction_label}</div>',
+    st.markdown(f'<div style="background-color: {prediction_color}; padding: 20px;">{prediction_label}</div>',
                 unsafe_allow_html=True)
 
-    return prediction_label
+#     return prediction_label
 
 
 def prepare_input_data(input_data):
