@@ -108,6 +108,8 @@ def main():
         st.write(prediction)
 
 
+
+
 def perform_classification(input_data):
     # Load the trained model
     model = joblib.load("bank_model1.pkl")
@@ -118,7 +120,15 @@ def perform_classification(input_data):
     # Perform the prediction
     prediction = model.predict(X)
 
-    return prediction
+    # Map the predicted values to text labels and colors
+    label_map = {0: ("The user is not elligible for creating a deposit account", "red"), 1: ("The user is elligible for creating a deposit account", "green")}
+    prediction_label, prediction_color = label_map[prediction[0]]
+
+    # Display the text box with colored background
+    st.markdown(f'<div style="background-color: {prediction_color}; padding: 10px;">{prediction_label}</div>',
+                unsafe_allow_html=True)
+
+    return prediction_label
 
 
 def prepare_input_data(input_data):
