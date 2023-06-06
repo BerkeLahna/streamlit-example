@@ -19,6 +19,38 @@ def minus(value, key):
 def main():
     st.title("Bank Information Classification")
     
+    
+    
+    import streamlit as st
+
+    st.set_page_config(layout="wide")
+
+    # Set CSS to make sidebars blue
+    st.markdown(
+        """
+        <style>
+        .sidebar .sidebar-content {
+            background-color: blue;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Create left sidebar
+    left_sidebar = st.sidebar.beta_container()
+    with left_sidebar:
+        st.write("Left Sidebar Content")
+
+    # Create right sidebar
+    right_sidebar = st.sidebar.beta_container()
+    with right_sidebar:
+        st.write("Right Sidebar Content")
+
+    # Main content
+    st.write("Main Content")
+
+
     col1, col2, col3 = st.columns([10, 1.4, 1.4])
     with col1:
        
