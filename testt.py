@@ -65,7 +65,7 @@ def main():
             'contact': st.selectbox("Preferred contact type:", ['cellular', 'telephone']),
             'month': st.selectbox("Last contact month:", ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']),
             'day_of_week': st.selectbox("Last contact day of the week:", ['mon', 'tue', 'wed', 'thu', 'fri']),
-            'duration': st.slider("Enter call duration in seconds:", min_value=0, max_value=3600, value=0, key='duration'),
+            'duration': st.slider("Enter call duration in seconds:", min_value=0, max_value=4000, value=0, key='duration'),
             'campaign': st.slider("Enter number of contacts performed during this campaign for this client:", min_value=0, max_value=50, value=0, key='campaign'),
             'pdays': st.slider("Enter number of days that passed after the client was last contacted from a previous campaign:", min_value=0, max_value=1000, value=0, key='pdays'),
             'previous': st.slider("Enter number of contacts performed before this campaign for this client:", min_value=0, max_value=10, value=0, key='previous'),
